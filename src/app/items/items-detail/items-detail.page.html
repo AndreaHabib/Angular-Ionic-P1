@@ -1,16 +1,17 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-button slot="start">
-      <ion-back-button defaultHref="/items" color="primary"></ion-back-button>
+      <ion-back-button defaultHref="/items"></ion-back-button>
     </ion-button>
-    <ion-title>items-detail</ion-title>
+    <ion-title>{{loadedItem.title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid>
+  <ion-grid no-padding>
     <ion-row>
       <ion-col
+        no-padding
         [ngStyle]="{width: '100%', display: 'flex', justifyContent: 'center'}"
       >
         <ion-img
@@ -26,11 +27,23 @@
           <h1>{{loadedItem?.title}}</h1>
         </ion-item>
       </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>Description</ion-label>
+          <h1>{{loadedItem?.description}}</h1>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>Price</ion-label>
+          <h1>{{loadedItem?.price}}</h1>
+        </ion-item>
+      </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
         <ion-list>
-          <ion-item *ngFor="let item of loadedItem?.ingredients">
+          <ion-item *ngFor="let item of loadedItem?.facts">
             <ion-label>{{item}}</ion-label>
           </ion-item>
         </ion-list>

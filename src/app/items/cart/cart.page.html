@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>cart</ion-title>
+    <ion-button slot="start">
+      <ion-back-button defaultHref="/items"></ion-back-button>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of cartItems">
+      <ion-avatar slot="start">
+        <ion-img [src]="item.item.imageUrl"></ion-img>
+      </ion-avatar>
+      <ion-label>{{item.item.title}}</ion-label>
+      <ion-label>x{{item.quantity}}</ion-label>
+      <ion-button (click)="onAddToCart(item.item)">
+        <ion-icon name="add"></ion-icon>
+        <ion-icon name="cart-outline"></ion-icon>
+      </ion-button>
+      <ion-button color="danger" (click)="onRemoveFromCart(item.item)">
+        <ion-icon name="remove"></ion-icon>
+        <ion-icon name="cart-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-text>Total Price in Cart: {{totalPrice}}</ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-text>Total Items in Cart: {{totalItems}}</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+  <ion-button (click)="onRemove()">Clear cart</ion-button>
+  <ion-button (click)="onRemove()" [routerLink]="['/items']"
+    >Checkout using paypal</ion-button
+  >
+  <ion-button (click)="onRemove()" [routerLink]="['/items']"
+    >Checkout using google</ion-button
+  >
+</ion-content>

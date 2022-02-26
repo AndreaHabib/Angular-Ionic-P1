@@ -1,16 +1,33 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>items</ion-title>
+    <ion-button slot="end" [routerLink]="['/items/cart']">
+      <ion-icon name="cart-outline"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-label>Search</ion-label>
+    <ion-input (change)="onSearch($event)"></ion-input>
+  </ion-item>
   <ion-list>
-    <ion-item *ngFor="let item of items" [routerLink]="['/items', item.id]">
-      <ion-avatar slot="start">
-        <ion-img [src]="item.imageUrl"></ion-img>
-      </ion-avatar>
-      <ion-label>{{item.title}}</ion-label>
+    <ion-item *ngFor="let item of items">
+      <ion-item [routerLink]="['/items', item.id]">
+        <ion-avatar slot="start">
+          <ion-img [src]="item.imageUrl"></ion-img>
+        </ion-avatar>
+        <ion-label slot="center">{{item.title}}</ion-label>
+        <ion-item> {{item.description}} </ion-item>
+        <ion-item> {{item.price | currency: 'USD': true}} </ion-item>
+      </ion-item>
+      <ion-item slot="end">
+        <ion-button (click)="onAddToCart(item)">
+          <ion-icon name="add"></ion-icon>
+          <ion-icon name="cart-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
     </ion-item>
   </ion-list>
 </ion-content>

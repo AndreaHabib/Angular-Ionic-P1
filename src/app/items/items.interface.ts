@@ -1,6 +1,8 @@
 export interface Item {
   id: number;
   title: string;
+  description: string;
   imageUrl: string;
-  ingredients: string[];
+  facts: string[];
+  price: number;
 }
